@@ -1,0 +1,31 @@
+From: Tomasz Buchert <tomasz@debian.org>
+Date: Sat, 30 Apr 2022 15:25:22 +0200
+Subject: This patch adds a basic support for m68k and ppc64 architectures.
+
+---
+ src/hd/hd.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/src/hd/hd.c b/src/hd/hd.c
+index 70a73d9..f17e69f 100644
+--- a/src/hd/hd.c
++++ b/src/hd/hd.c
+@@ -160,6 +160,18 @@
+ #define HD_ARCH "loongarch"
+ #endif
+ 
++#ifdef __mc68000__
++#define HD_ARCH "m68k"
++#endif
++
++#ifdef __powerpc64__
++#define HD_ARCH "ppc64"
++#endif
++
++#ifdef __sh__
++#define HD_ARCH "sh"
++#endif
++
+ typedef struct disk_s {
+   struct disk_s *next;
+   unsigned crc;
